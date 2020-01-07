@@ -1,0 +1,12 @@
+{
+  "domain": "synology_switch",
+  "name": "Synology Switch",
+  "documentation": "https://github.com/billhu1996/SynologySwitch",
+  "requirements": [
+    "wakeonlan>=1.1.6"
+  ],
+  "dependencies": ["switch"],
+  "codeowners": [
+    "@billhu1996"
+  ]
+}
