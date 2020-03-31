@@ -20,6 +20,7 @@ switch:
     mac: 00:11:22:33:EE:FF
     username: username
     password: pass
+    secure: False
 ```
 
 - url
