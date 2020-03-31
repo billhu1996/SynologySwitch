@@ -63,7 +63,7 @@ class Synology:
             "session": "homebridge-synology-" + "".join(random.sample(string.ascii_lowercase, 8)),
             "format": "sid"
         })
-        resp = requests.get(self.url + "/webapi/auth.cgi?" + params)
+        resp = requests.get(self.url + "/webapi/auth.cgi?" + params, verify=self.secure)
         sid = ""
         try:
             sid = resp.json()["data"]["sid"]
@@ -85,7 +85,7 @@ class Synology:
         })
         #_LOGGER.error("params")
         #_LOGGER.error(params)
-        resp = requests.get(self.url + apiUrl + params)
+        resp = requests.get(self.url + apiUrl + params, verify=self.secure)
         #if resp and resp.status_code == 200 and resp.json()["success"]:
             #_LOGGER.error("shutdown OK")
         #else:
@@ -93,7 +93,7 @@ class Synology:
 
     def getPowerState(self):
         try:
-            resp = requests.get(self.url + "/webman/index.cgi", timeout=self.timeout)
+            resp = requests.get(self.url + "/webman/index.cgi", timeout=self.timeout, verify=self.secure)
             if resp and resp.status_code == 200:
                 return True
             else:
