@@ -63,9 +63,9 @@ class Synology:
             "session": "homebridge-synology-" + "".join(random.sample(string.ascii_lowercase, 8)),
             "format": "sid"
         })
-        resp = requests.get(self.url + "/webapi/auth.cgi?" + params, verify=self.secure)
         sid = ""
         try:
+            resp = requests.get(self.url + "/webapi/auth.cgi?" + params, verify=self.secure)
             sid = resp.json()["data"]["sid"]
             self.auth["time"] = int(time.time())
         except:
@@ -83,13 +83,10 @@ class Synology:
             "version": "1",
             "_sid": self.auth["sid"]
         })
-        #_LOGGER.error("params")
-        #_LOGGER.error(params)
-        resp = requests.get(self.url + apiUrl + params, verify=self.secure)
-        #if resp and resp.status_code == 200 and resp.json()["success"]:
-            #_LOGGER.error("shutdown OK")
-        #else:
-            #_LOGGER.error("shutdown fail")
+        try:
+            resp = requests.get(self.url + apiUrl + params, verify=self.secure)
+        except:
+            _LOGGER.info("shutdown requests except.")
 
     def getPowerState(self):
         try:
@@ -144,11 +141,11 @@ class MySwitch(SwitchDevice):
         self.synology.wakeUp()
         self._is_on = True
 
-    async def async_turn_off(self, **kwargs):
+    def turn_off(self, **kwargs):
         """Turn the plug off."""
         self.synology.shutdown()
         self._is_on = False
 
-    async def async_update(self):
+    def update(self):
         """Fetch state from the device."""
         self._is_on = self.synology.getPowerState()
