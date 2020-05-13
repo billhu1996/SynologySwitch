@@ -1,0 +1,7 @@
+{
+    "name": "Synology Switch",
+    "domains": [
+        "switch"
+    ],
+    "homeassistant": "0.100.0"
+}
