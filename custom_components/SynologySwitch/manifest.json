@@ -2,6 +2,7 @@
   "domain": "synology_switch",
   "name": "Synology Switch",
   "documentation": "https://github.com/billhu1996/SynologySwitch",
+  "issue_tracker": "https://github.com/billhu1996/SynologySwitch/issues",
   "requirements": [
     "wakeonlan>=1.1.6"
   ],
