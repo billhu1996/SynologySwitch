@@ -7,7 +7,15 @@ Synology switch for Home Assistant. Control your Synology Diskstation with Home 
 
 Install Home Assistant first.
 
-Copy `__init__.py` and `switch.py` to `homeassistant/custom_components/synology/`
+### 1
+
+Using [Home Assistant Community Store](https://hacs.xyz/)
+
+OR
+
+Copy `__init__.py` and `switch.py` to `homeassistant/custom_components/synology_switch/`
+
+### 2
 
 Edit `configuration.yaml`
 
