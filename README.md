@@ -44,6 +44,10 @@ switch:
 - wake up (wake-on-lan has to be active) your diskstation
 - shutdown your diskstation
 
+### Two factor authentification (2FA)
+
+This plugin does not support 2FA. If you have enabled 2FA, consider creating another account without 2FA.
+
 ## Issues
 
 Please double check your config.json before opening an issue.
