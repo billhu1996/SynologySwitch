@@ -1,5 +1,5 @@
 from wakeonlan import send_magic_packet
-from homeassistant.components.switch import SwitchDevice
+from homeassistant.components.switch import SwitchEntity
 import urllib, requests, time, random, string, logging, time
 from homeassistant.const import ATTR_ENTITY_ID, CONF_HOST, CONF_NAME, CONF_TOKEN
 DATA_KEY = "switch.synology"
@@ -25,7 +25,7 @@ async def async_setup_platform(hass, config, async_add_entities, discovery_info=
     version = config.get(VERSION) or 6
     if DATA_KEY not in hass.data:
         hass.data[DATA_KEY] = {}
-    device = MySwitch(url, mac, username, password, secure, timeout, version)
+    device = SynologySwitch(url, mac, username, password, secure, timeout, version)
     hass.data[DATA_KEY][host] = device
     devices = []
     devices.append(device)
@@ -102,7 +102,7 @@ class Synology:
         send_magic_packet(self.mac)
         return
 
-class MySwitch(SwitchDevice):
+class SynologySwitch(SwitchEntity):
 
     def __init__(self, url, mac, username, password, secure=False, timeout=5, version=6):
         #_LOGGER.error("init %s %s %s %s %d %d %d", url, mac, username, password, secure, timeout, version)
@@ -149,3 +149,4 @@ class MySwitch(SwitchDevice):
     def update(self):
         """Fetch state from the device."""
         self._is_on = self.synology.getPowerState()
+
